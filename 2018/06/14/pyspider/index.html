@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    PySpider | Hexo
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="John Doe">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 2 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 1 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">Hexo</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    John Doe
+
+    <span class="post-date float-right" title="{{moment(1528968870000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1528968870000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>PySpider</h1>
+    <h2 id="pyspider简介："><a href="#pyspider简介：" class="headerlink" title="pyspider简介："></a>pyspider简介：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	PySpider：一个国人编写的强大的网络爬虫系统并带有强大的WebUI。采用Python语言编写，分布式架构，支持多种数据库后端，强大的WebUI支持脚本编辑器，任务监视器，项目管理器以及结果查看器。</span><br><span class="line"></span><br><span class="line">	pyspider是作者之前做的一个爬虫架构的开源化实现。主要的功能需求是：</span><br><span class="line">		1.抓取、更新调度多站点的特定的页面</span><br><span class="line">		2.需要对页面进行结构化信息提取</span><br><span class="line">		3.灵活可扩展，稳定可监控</span><br><span class="line"></span><br><span class="line">	而这也是绝大多数python爬虫的需求 —— 定向抓取，结构化化解析。但是面对结构迥异的各种网站，单一的抓取模式并不一定能满足，灵活的抓取控制是必须的。为了达到这个目的，单纯的配置文件往往不够灵活，于是，通过脚本去控制抓取是我最后的选择。</span><br><span class="line"></span><br><span class="line">	而去重调度，队列，抓取，异常处理，监控等功能作为框架，提供给抓取脚本，并保证灵活性。最后加上web的编辑调试环境，以及web任务监控，即成为了这套框架。</span><br><span class="line"></span><br><span class="line">pyspider的设计基础是：以python脚本驱动的抓取环模型爬虫</span><br><span class="line"></span><br><span class="line">通过python脚本进行结构化信息的提取，follow链接调度抓取控制，实现最大的灵活性</span><br><span class="line"></span><br><span class="line">通过web化的脚本编写、调试环境。web展现调度状态</span><br><span class="line"></span><br><span class="line">抓取环模型成熟稳定，模块间相互独立，通过消息队列连接，从单进程到多机分布式灵活拓展</span><br></pre></td></tr></table></figure>
+
+<p> 以上来自<a href="(http://www.pyspider.cn/)">pyspider官网</a></p>
+<hr>
+<p>###<strong>pyspider和scrapy对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">描述</th>
+<th align="center">pyspider</th>
+<th align="center">scrapy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">上手程度</td>
+<td align="center">★★脚本编写规则简单，立刻就能上手，but开发文档少，要干啥得自己看源代码</td>
+<td align="center">★文档全，要学习的相关知识较多</td>
+</tr>
+<tr>
+<td align="center">开发便利程度</td>
+<td align="center">只能在web端开发，界面简单，没有任何编辑功能（高亮，行号等），碰到报错在第1XX行时，慢慢找吧 （T。T）</td>
+<td align="center">★可以使用任意IDE/编辑器进行编辑</td>
+</tr>
+<tr>
+<td align="center">数据处理</td>
+<td align="center">默认保存为json格式到数据库，可以复写on_result函数自行处理</td>
+<td align="center">需要自己保存数据</td>
+</tr>
+<tr>
+<td align="center">动态解析</td>
+<td align="center">★★可以直接调用PhamtomJS（需安装）动态解析网站，神器！</td>
+<td align="center">只能人为解析动态加载的方式</td>
+</tr>
+<tr>
+<td align="center">自定义程度</td>
+<td align="center">自定义程度相对scrapy低，插件功能非常弱，需要自己编写调用</td>
+<td align="center">★★★预定义了众多接口（如中间件接口，默认Headers和cookies）</td>
+</tr>
+<tr>
+<td align="center">URL去重</td>
+<td align="center">PySpider用的是数据库来去重</td>
+<td align="center">★★★对千万级URL去重支持很好，采用布隆过滤(海量大数据处理单机方案)</td>
+</tr>
+<tr>
+<td align="center">运行调度</td>
+<td align="center">★★★WEB界面编写调试脚本，起停脚本，监控执行状态，查看活动历史，获取结果产出</td>
+<td align="center">需要使用scrapyd另外部署</td>
+</tr>
+<tr>
+<td align="center">开发时页面解析验证</td>
+<td align="center">★★★可以直接run要解析的网页任务，直接实时验证并获取结果，相当便利有木有</td>
+<td align="center">验证解析规则时，要开启爬虫（或自己保存页面源代码）进行验证，不方便</td>
+</tr>
+<tr>
+<td align="center">开发时验证爬取流程</td>
+<td align="center">★★★可以直接通过webUI查看任务的进行的步骤，实时验证</td>
+<td align="center">调试不方便，需要开启爬虫后查看DEBUG信息</td>
+</tr>
+<tr>
+<td align="center">运行报错时</td>
+<td align="center">报错影响执行</td>
+<td align="center">基于twisted框架，报错不会影响其他任务的进行</td>
+</tr>
+</tbody></table>
+<hr>
+<p>总结：<br>|pyspider|<br>|:—:|<br>|轻量级框架，脚本代码和默认提取的数据都保存在数据库（用户根目录下）中，它提供了webUI更便于调度和开发的调试，可以搭建专门的爬虫服务器，远程开发和调试，但是功能有限，需要自己编写插件（如使用大量代理IP时），且定制插件需固定在指定绝对路径下，不方便项目的打包移植|</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">scrapy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">体积庞大，功能丰富，自定义程度高，可以根据需求任意修改，且便于移植，但开发时调试不如pyspider方便</td>
+</tr>
+</tbody></table>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">描述</th>
+<th align="center">相同点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">运行模式</td>
+<td align="center">parse-&gt;yield request-&gt;pipeline流程是所有爬虫的固有模式。</td>
+</tr>
+<tr>
+<td align="center">页面解析</td>
+<td align="center">都内置了XPath，CSS解析方法，也可以通过Lxml，BeautifulSoup等库解析，怎么处理页面是你自己决定的</td>
+</tr>
+<tr>
+<td align="center">数据处理</td>
+<td align="center">抓到了数据要怎么处理也是你自己决定的。</td>
+</tr>
+</tbody></table>
+<hr>
+<p>##PySpider的使用</p>
+<p><a href="(http://demo.pyspider.org/)">界面在线示例</a>（下文实例可在本页执行）</p>
+<p><a href="(http://www.pyspider.cn/book/pyspider/pyspider-Quickstart-2.html)">开发手册</a></p>
+<p><strong>下载方式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyspider</span><br></pre></td></tr></table></figure>
+
+<p><strong>依赖</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python python-dev python-distribute python-pip libcurl4-openssl-dev libxml2-dev libxslt1-dev python-lxml</span><br></pre></td></tr></table></figure>
+
+<p>###<strong>调度界面如下</strong>：
+<img src="http://img.blog.csdn.net/20170223163941325?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzMwNTI1Mzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><strong>status说明：</strong></p>
+<ol>
+<li>TODO：项目刚刚创建后的状态</li>
+<li>DEBUG/RUNNING：这两状态都会运行爬虫，但是他们之间是有区别的．一般来说调试阶段用DEBUG状态，线上用RUNNING状态．</li>
+<li>STOP：你可以设置项目状态为STOP让项目停止运行</li>
+<li>CHECKING：当一个运行中的项目被编辑时项目状态会被自动设置成此状态并停止运行</li>
+</ol>
+<p>###<strong>开发界面</strong>：
+<img src="http://img.blog.csdn.net/20170223151754411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzMwNTI1Mzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>  下面对区块进行说明：</p>
+<ul>
+<li><p>整个页面分为两栏，左边是爬取页面预览区域，右边是代码编写区域。</p>
+</li>
+<li><p>左侧绿色区域：这个请求对应的 JSON 变量，在 PySpider 中，每个请求都有与之对应的 JSON 变量，包括回调函数，方法名，请求链接，请求数据等等。</p>
+</li>
+<li><p>绿色区域右上角Run：点击右上角的 run 按钮，就会执行这个请求，可以在左边的蓝色区域出现请求的结果。</p>
+</li>
+<li><p>左下 enable css selector helper: 抓取页面之后，点击此按钮，可以方便地获取页面中某个元素的 CSS 选择器。</p>
+</li>
+<li><p>左下 web: 即抓取的页面的实时预览图。</p>
+</li>
+<li><p>左下 html: 抓取页面的 HTML 代码。</p>
+</li>
+<li><p>左下 follows: 如果当前抓取方法中又新建了爬取请求，那么接下来的请求就会出现在 follows 里。</p>
+</li>
+<li><p>左下 messages: 爬取过程中输出的一些信息。</p>
+</li>
+<li><p>右侧代码区域: 你可以在右侧区域书写代码，并点击右上角的 Save 按钮保存。</p>
+</li>
+<li><p>右上 WebDAV Mode: 打开调试模式，左侧最大化，便于观察调试。</p>
+</li>
+</ul>
+<p>###<strong>开发快速上手</strong>：
+ 主要函数解释：</p>
+<ul>
+<li><p>def on_start(self) 方法是入口代码。当在web控制台点击run按钮时会执行此方法。</p>
+</li>
+<li><p>self.crawl(url, callback=self.index_page)这个方法是调用API生成一个新的爬取任务，这个任务被添加到待抓取队列。</p>
+</li>
+<li><p>def index_page(self, response) 这个方法获取一个Response对象。 response.doc是pyquery对象的一个扩展方法。pyquery是一个类似于jQuery的对象选择器。</p>
+</li>
+<li><p>def detail_page(self, response)返回一个结果集对象。这个结果默认会被添加到resultdb数据库（如果启动时没有指定数据库默认调用sqlite数据库）。你也可以重写on_result(self,result)方法来指定保存位置。<br>更多知识：</p>
+</li>
+<li><p>@every(minutes=24*60, seconds=0) 这个设置是告诉scheduler（调度器）on_start方法每天执行一次。</p>
+</li>
+<li><p>@config(age=10 * 24 * 60 * 60) 这个设置告诉scheduler（调度器）这个request（请求）过期时间是10天，10天内再遇到这个请求直接忽略。这个参数也可以在self.crawl(url, age=10<em>24</em>60*60) 和 crawl_config中设置。</p>
+</li>
+<li><p>@config(priority=2) 这个是优先级设置。数字越小越先执行。</p>
+<p>以爬取财经网财经热评为例：启动函数on_start：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@every(minutes=24 * 60)</span><br><span class="line">def on_start(self):</span><br><span class="line">    self.crawl(&apos;http://comments.caijing.com.cn/hottopics/&apos;, callback=self.index_page)</span><br></pre></td></tr></table></figure>
+
+<p>调用内置函数self.crawl，生成response对象，传给回调函数index_page</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@config(age=10 * 24 * 60 * 60)</span><br><span class="line">    def index_page(self, response):</span><br><span class="line">	    # 选择所有href属性以http开头的a标签</span><br><span class="line">        for each in response.doc(&apos;a[href^=&quot;http&quot;]&apos;).items():</span><br><span class="line">			# 判断该标签是否是《新闻评论》详情的url</span><br><span class="line">            if re.match(&apos;http://comments.caijing.com.cn/\d+&apos;, each.attr.href, re.U):</span><br><span class="line">	            # 再次发送请求，回调函数为最终的解析函数</span><br><span class="line">                self.crawl(each.attr.href, callback=self.detail_page)</span><br></pre></td></tr></table></figure>
+
+<p> 进入解析方法，解析页面。response.etree是内置方法，它生成一个html的etree对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@config(priority=2)</span><br><span class="line">    def detail_page(self, response):</span><br><span class="line">        data = &#123;</span><br><span class="line">            &quot;url&quot;: response.url,</span><br><span class="line">            # 调用xpath提取title</span><br><span class="line">            &quot;title&quot;: response.etree.xpath(&apos;//*[@id=&quot;cont_title&quot;]/text()&apos;)[0]</span><br><span class="line">        &#125;</span><br><span class="line">        return data</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p> 全部代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">class Handler(BaseHandler):</span><br><span class="line">    crawl_config = &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @every(minutes=24 * 60)</span><br><span class="line">    def on_start(self):</span><br><span class="line">        self.crawl(&apos;http://comments.caijing.com.cn/hottopics/&apos;, callback=self.index_page, force_update=True)</span><br><span class="line"></span><br><span class="line">    @config(age=10 * 24 * 60 * 60)</span><br><span class="line">    def index_page(self, response):</span><br><span class="line">        for each in response.doc(&apos;a[href^=&quot;http&quot;]&apos;).items():</span><br><span class="line">            if re.match(&apos;http://comments.caijing.com.cn/\d+&apos;, each.attr.href, re.U):</span><br><span class="line">                self.crawl(each.attr.href, callback=self.detail_page)</span><br><span class="line">            elif re.match(&apos;http://comments.caijing.com.cn/hottopics/\d+.shtml&apos;, each.attr.href, re.U):</span><br><span class="line">                self.crawl(each.attr.href, callback=self.index_page, force_update=True)</span><br><span class="line"></span><br><span class="line">    @config(priority=2)</span><br><span class="line">    def detail_page(self, response):</span><br><span class="line">        etree = response.etree</span><br><span class="line">        print type(etree.xpath(&apos;//*[@id=&quot;cont_title&quot;]/text()&apos;)[0].encode(&apos;utf-8&apos;))</span><br><span class="line">        data = &#123;</span><br><span class="line">            &quot;url&quot;: response.url,</span><br><span class="line">            &quot;title&quot;: etree.xpath(&apos;//*[@id=&quot;cont_title&quot;]/text()&apos;)[0].encode(&apos;utf-8&apos;),</span><br><span class="line">            &quot;content&quot;:&apos;\n&apos;.join(etree.xpath(&apos;//*[@id=&quot;the_content&quot;]/p/text()&apos;)).encode(&apos;utf-8&apos;),</span><br><span class="line">            &quot;post_time&quot;:etree.xpath(&apos;//*[@id=&quot;pubtime_baidu&quot;]/text()&apos;)[0].encode(&apos;utf-8&apos;),</span><br><span class="line">            &quot;source&quot;:etree.xpath(&apos;//span[@id=&quot;source_baidu&quot;]//text()&apos;)[0].encode(&apos;utf-8&apos;),</span><br><span class="line">        &#125;</span><br><span class="line">        return data</span><br><span class="line"></span><br><span class="line">    def on_result(self, result):</span><br><span class="line">        if not result:</span><br><span class="line">            return</span><br><span class="line">        sql = SQL()</span><br><span class="line">        sql.replace(&apos;article&apos;, result)</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://yoursite.com" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 John Doe</li>
+      <li><a href="http://yoursite.com">Home</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
