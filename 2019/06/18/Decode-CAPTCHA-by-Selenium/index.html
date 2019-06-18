@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    Decode CAPTCHA by Selenium | TimorChow
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="Zehua Zhou">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://i2.wp.com/18.224.194.35/wp-content/uploads/2019/04/icon.jpeg?resize=300%2C300# by default https://octodex.github.com/images/baracktocat.jpg"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 4 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 1 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">TimorChow</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Zehua Zhou
+
+    <span class="post-date float-right" title="{{moment(1560817797000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1560817797000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>Decode CAPTCHA by Selenium</h1>
+    <p>参考：<a href="http://www.jianshu.com/p/7ed519854be7" target="_blank" rel="noopener">http://www.jianshu.com/p/7ed519854be7</a></p>
+<p><strong>获取验证码有两种思路</strong>：</p>
+<p>1.获取页面源代码，提取验证码图片</p>
+<p>2.利用selenium截取页面，定位验证码元素的位置，利用Image进行处理，获取其中验证码部分</p>
+<p><strong>下面进行解析</strong>：</p>
+<p>1.获取页面源代码，提取验证码图片</p>
+<p>如何获取源代码并提取验证码图片过程就不在分析了，既然看到这篇文章，相信这些工作都不在话下了。<br>这里只分析一下缺点：当提取验证码url后发现每次打开该验证码图片，其内容不断变化，<br>    以搜狗验证码为例：<a href="http://weixin.sogou.com/antispider/util/seccode.php?tc=1486691901，该验证码是单独加载进页面，而非嵌入，这时候，单纯提取验证码url会发现当前验证码和提取验证码地址打开的内容不一样。这时候，我们需要一个更方便简单的方法。" target="_blank" rel="noopener">http://weixin.sogou.com/antispider/util/seccode.php?tc=1486691901，该验证码是单独加载进页面，而非嵌入，这时候，单纯提取验证码url会发现当前验证码和提取验证码地址打开的内容不一样。这时候，我们需要一个更方便简单的方法。</a></p>
+<p>2.利用selenium截取页面<br>selenium.webdriver 内置了截取当前页面的功能，其中：</p>
+<pre><code>a.WebDriver.Chrome自带的方法只能对当前窗口截屏，若是需要截取的窗口超过了一屏，就只能另辟蹊径了。
+
+b.WebDriver.PhantomJS自带的方法支持对整个网页截屏。</code></pre><p>在这里，我们利用两种方法均可，因为验证码界面通常比较简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#打开验证码界面</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">url = &quot;http://weixin.sogou.com/antispider/?from=%2fweixinwap%3Fpage%3d2%26_rtype%3djson%26ie%3dutf8%26type%3d2%26query%3d%E6%91%A9%E6%8B%9C%E5%8D%95%E8%BD%A6%26pg%3dwebSearchList%26_sug_%3dn%26_sug_type_%3d%26&quot;</span><br><span class="line">   driver.set_window_size(1200, 800)</span><br><span class="line">   cookies = info[&apos;cookies&apos;]</span><br><span class="line"></span><br><span class="line">#处理cookies</span><br><span class="line">driver.get(url)</span><br><span class="line">   for k,v in cookies.iteritems():</span><br><span class="line">       cookie_dict =&#123;&apos;name&apos;:k,&apos;value&apos;:v&#125;</span><br><span class="line">       driver.add_cookie(cookie_dict)</span><br><span class="line">   driver.get(url)</span><br><span class="line"></span><br><span class="line">#获取截图</span><br><span class="line">driver.get_screenshot_as_file(&apos;CrawlResult/screenshot.png&apos;)</span><br><span class="line"></span><br><span class="line">#获取指定元素位置</span><br><span class="line">   element = driver.find_element_by_id(&apos;seccodeImage&apos;)</span><br><span class="line">   left = int(element.location[&apos;x&apos;])</span><br><span class="line">   top = int(element.location[&apos;y&apos;])</span><br><span class="line">   right = int(element.location[&apos;x&apos;] + element.size[&apos;width&apos;])</span><br><span class="line">   bottom = int(element.location[&apos;y&apos;] + element.size[&apos;height&apos;])</span><br><span class="line"></span><br><span class="line">#通过Image处理图像</span><br><span class="line">   im = Image.open(&apos;CrawlResult/screenshot.png&apos;)</span><br><span class="line">   im = im.crop((left, top, right, bottom))</span><br><span class="line">   im.save(&apos;CrawlResult/code.png&apos;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>到这里，我们的验证码就拿下来啦，怎么处理呢？</strong></p>
+<p>1.pytesser，tesseract，OCR 等库处理</p>
+<p>2.验证码不多，并为了提高识别效率和简化操作，我采用了调用打码平台（ruokuai）API方法，价格大概是1块钱打100-150个（根据验证码位数和是否数字/字母混合）</p>
+<p>验证码类型和价格介绍<a href="http://www.ruokuai.com/home/pricetype" target="_blank" rel="noopener">http://www.ruokuai.com/home/pricetype</a></p>
+<p><strong>下面分析一下怎样使用打码平台：</strong></p>
+<p>1.先把开发文档贴上：<a href="http://wiki.ruokuai.com/" target="_blank" rel="noopener">http://wiki.ruokuai.com/</a></p>
+<p>2.官方的调用方法（有两种：DOS版和普通版，下面贴的普通版，基本原理一样）</p>
+<p>原理： 将验证码图片，打码平台账号，密码等按照指定格式调用API（访问URL）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">class RClient(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, username, password, soft_id, soft_key):</span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = md5(password).hexdigest()</span><br><span class="line">        self.soft_id = soft_id</span><br><span class="line">        self.soft_key = soft_key</span><br><span class="line">        self.base_params = &#123;</span><br><span class="line">            &apos;username&apos;: self.username,</span><br><span class="line">            &apos;password&apos;: self.password,</span><br><span class="line">            &apos;softid&apos;: self.soft_id,</span><br><span class="line">            &apos;softkey&apos;: self.soft_key,</span><br><span class="line">        &#125;</span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            &apos;Connection&apos;: &apos;Keep-Alive&apos;,</span><br><span class="line">            &apos;Expect&apos;: &apos;100-continue&apos;,</span><br><span class="line">            &apos;User-Agent&apos;: &apos;ben&apos;,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def rk_create(self, im, im_type, timeout=60):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        im: 图片字节</span><br><span class="line">        im_type: 题目类型</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        params = &#123;</span><br><span class="line">            &apos;typeid&apos;: im_type,</span><br><span class="line">            &apos;timeout&apos;: timeout,</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        files = &#123;&apos;image&apos;: (&apos;a.jpg&apos;, im)&#125;</span><br><span class="line">        r = requests.post(&apos;http://api.ruokuai.com/create.json&apos;, data=params, files=files, headers=self.headers)</span><br><span class="line">        return r.json()</span><br><span class="line"></span><br><span class="line">    def rk_report_error(self, im_id):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        im_id:报错题目的ID</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        params = &#123;</span><br><span class="line">            &apos;id&apos;: im_id,</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        r = requests.post(&apos;http://api.ruokuai.com/reporterror.json&apos;, data=params, headers=self.headers)</span><br><span class="line">        return r.json()</span><br><span class="line"></span><br><span class="line">rc = RClient(&apos;username&apos;, &apos;password&apos;, &apos;soft_id&apos;, &apos;soft_key&apos;)</span><br><span class="line">imagePath = &apos;CrawlResult/code.png&apos;</span><br><span class="line">im = open(imagePath, &apos;rb&apos;).read()</span><br><span class="line">code_json = rc.rk_create(im, &apos;验证码类型&apos;)# 类型和价格介绍http://www.ruokuai.com/home/pricetype</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://timorchow.github.io" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 Zehua Zhou</li>
+      <li><a href="http://timorchow.github.io">Home</a></li>
+      
+      <li><a href="http://github.com/timorchow">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
