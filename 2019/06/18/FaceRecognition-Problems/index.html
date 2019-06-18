@@ -7,9 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>
-    TimorChow
+    FaceRecognition Problems  | TimorChow
   </title>
   <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
   
   <meta name="author" content="Zehua Zhou">
 
@@ -77,112 +81,68 @@
 </nav>
 
 <div class="main-container">
-  
-
-<div class="container-lg">
-  
-
-<div class="blog-intro">
-  <div class="blog-intro-user">
-    <img class="avatar" src="https://i2.wp.com/18.224.194.35/wp-content/uploads/2019/04/icon.jpeg?resize=300%2C300# by default https://octodex.github.com/images/baracktocat.jpg">
-    <div class="user-name">
-      <div class="blog-title">TimorChow</div>
-      <div class="blog-author">Zehua Zhou</div>
-        <ul class="user-detail mobile-only">
-    
-    <li>
-      <i class="fa fa-map-marker"></i>
-      Toronto, Canada
-    </li>
-    
-    <li>
-      <i class="fa fa-envelope-o"></i>
-      <a href="mailto:timorchow@gmail.com">timorchow@gmail.com</a>
-    </li>
-    
-    <li>
-      <i class="fa fa-link"></i>
-      <a href="http://timorchow.github.io">http://timorchow.github.io</a>
-    </li>
-  </ul>
-    </div>
-    <div class="blog-description">
-      
-    </div>
-  </div>
-
-  <ul class="user-detail desktop-only">
-    
-    <li>
-      <i class="fa fa-map-marker"></i>
-      Toronto, Canada
-    </li>
-    
-    <li>
-      <i class="fa fa-envelope-o"></i>
-      <a href="mailto:timorchow@gmail.com">timorchow@gmail.com</a>
-    </li>
-    
-    <li>
-      <i class="fa fa-link"></i>
-      <a href="http://timorchow.github.io">http://timorchow.github.io</a>
-    </li>
-  </ul>
-
-  <div class="social-media desktop-only">
-    <h4>Social Media</h4>
-    <ul>
-      
-      <li class="social-media-item"><a href="http://github.com/timorchow" target="_blank"><i class="fa fa-github"></i></a></li>
-      
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 5 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 1 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 1 </a>
+      </li>
     </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">TimorChow</a>
+      
+      
+    </h2>
   </div>
-</div>
 
-
-  <div class="blog-detail">
-    
-<nav class="blog-detail-nav desktop-only">
-  <ul class="clearfix">
-    <li class>
-      <a href="/">Overview</a></li>
-    <li class="selected">
-      <a href="/archives">Posts <span class="counter">5</span></a>
-    </li>
-    <li class>
-      <a href="/categories">Categories <span class="counter">1</span></a></li>
-    <li class>
-      <a href="/tags">Tags <span class="counter">1</span></a></li>
-  </ul>
-</nav>
-
-    <div class="body-secondary">
-      <ul class="archive-list">
-        
-        <li class="archive-list-item">
-          <h2><a href="/2018/06/14/pyspider/">PySpider</a></h2>
-          <p>
-               pyspider简介：  PySpider：一个国人编写的强大的网络爬虫系统并带有强大的WebUI。 
-      1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18       	采用P...
-          </p>
-          <ul class="tag-list clearfix">
-            
-          </ul>
-          <div class="post-info">
-            <span>
-              
-              <a class="category-link" href="/categories/data/"><i class="fa fa-folder-open"></i> data</a>
-              
-            </span>
-            <span><i class="fa fa-tag"></i> 0 </span>
-            <span>Published {{moment(1528968870000).fromNow()}}</span>
-          </div>
-        </li>
-        
-      </ul>
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
     </div>
   </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    Zehua Zhou
+
+    <span class="post-date float-right" title="{{moment(1560848997000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1560848997000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>FaceRecognition Problems </h1>
+    <p>问题描述: The process has forked and you cannot use this CoreFoundation functionality safely. You MUST exec().</p>
+<p>原因: 使用多进程时, cv2.imshow()放到了多线程中执行</p>
+<p>问题描述:</p>
+<p>原因:</p>
+
+  </article>
 </div>
+
+
+    
+
+
+
 
 </div>
 
