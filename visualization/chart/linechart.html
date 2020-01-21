@@ -1,0 +1,139 @@
+<https://github.com/nvd3-community/nvd3/tree/gh-pages/build/>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../nv.d3.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #chart1, svg {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chart1">
+    <svg></svg>
+</div>
+
+<script>
+    // Wrapping in nv.addGraph allows for '0 timeout render', stores rendered charts in nv.graphs,
+    // and may do more in the future... it's NOT required
+    nv.addGraph(function() {
+        var chart = nv.models.cumulativeLineChart()
+            .useInteractiveGuideline(true)
+			//console.log(d);
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1]/100 })
+            .color(d3.scale.category10().range())
+            .average(function(d) { return d.mean/100; })
+            .duration(300)
+            .clipVoronoi(false);
+        chart.dispatch.on('renderEnd', function() {
+            console.log('render complete: cumulative line with guide line');
+        });
+        chart.xAxis.tickFormat(function(d) {
+            var mydate =d3.time.format('%m/%d/%y')(new Date(d))
+			
+			return mydate
+        });
+        chart.yAxis.tickFormat(d3.format(',.1%'));
+        d3.select('#chart1 svg')
+            .datum(cumulativeTestData())
+            .call(chart);
+        //TODO: Figure out a good way to do this automatically
+        nv.utils.windowResize(chart.update);
+        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+        chart.state.dispatch.on('change', function(state){
+            nv.log('state', JSON.stringify(state));
+        });
+        return chart;
+    });
+	//console.log(d);
+    function flatTestData() {
+        return [{
+            key: "Snakes",
+            values: [0,1,2,3,4,5,6,7,8,9].map(function(d) {console.log(d);
+                var currentDate = new Date();
+                currentDate.setDate(currentDate.getDate() + d);
+                return [currentDate, 0]
+            })
+        }];
+    }
+    function cumulativeTestData() {
+        return [
+            {
+                key: "True Price", values:[[1390197600000,      204.53846043],
+				[  1392176000000,        237.65420497],
+				[ 1394168000000,        228.78874416],
+				[  1396146400000,         230.56183632],
+				[  1398124800000,         232.33492848]
+ ,[  1400116800000,         234.10802065]
+ ,[  1402195200000,         239.42729713]
+ ,[   1404190800000,         242.97348146]
+ ,[  1406169200000,         244.74657362]
+ ,[ 1408147600000,         248.29275794]
+ ,[ 1410166800000,         235.88111281]
+ ,[ 1412145200000,         241.20038929]
+ ,[ 1414133600000,         246.51966578]
+ ,[ 1416112000000,         248.14963671]
+ ,[ 1418104000000,         254.8189588 ]
+ ,[ 1420182400000,         256.7244794 ]
+ ,[ 1422160800000,         251.9606779 ]
+ ,[ 1424152800000,         249.10239701]
+ ,[ 1426134800000,         251.0079176 ]
+ ,[ 1428126800000,         257.6772397 ]
+ ,[ 1430105200000,         253.8661985 ]
+ ,[ 1432183600000,         252.9134382 ]
+ ,[ 1440102800000,         258.63      ]
+ ,[ 1442181200000,         255.7717191 ]]
+                ,
+                mean: 250
+            },
+			
+            {
+                key: "Predice_1000epoch", 
+				values :[[  1390197600000,        211.60327148],
+ [  1392176000000,         208.72389221]
+ ,[  1394168000000,         218.25923157]
+ ,[  1396146400000,         223.70768738]
+ ,[  1398124800000,         230.05789185]
+ ,[  1400116800000,         229.02200317]
+ ,[  1402195200000,         230.48736572]
+ ,[   1404190800000,         233.17652893]
+ ,[  1406169200000,         236.08311462]
+ ,[ 1408147600000,         238.72399902]
+ ,[ 1410166800000,         241.14732361]
+ ,[ 1412145200000,         238.03135681]
+ ,[ 1414133600000,         237.83580017]
+ ,[ 1416112000000,         238.13546753]
+ ,[ 1418104000000,         241.1089325 ]
+ ,[ 1420182400000,         244.95706177]
+ ,[ 1422160800000,         247.42764282]
+ ,[ 1424152800000,         247.56764221]
+ ,[ 1426134800000,         245.95787048]
+ ,[ 1428126800000,         245.00167847]
+ ,[ 1430105200000,         247.13601685]
+ ,[ 1432183600000,         247.64260864]
+ ,[ 1440102800000,         247.8848877 ]
+ ,[ 1442181200000,         248.8835144 ]]
+                ,
+                mean: -60
+            },
+            
+        ];
+    }
+</script>
+</body></html>

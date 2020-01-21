@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../nv.d3.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+<button onclick="expandLegend();">Expand/Contract Legend</button>
+    <script>
+        var expandLegend = function() {
+            var exp = chart.legend.expanded();
+            chart.legend.expanded(!exp);
+            chart.update();
+        }
+    </script>
+<svg id="chart1"></svg>
+
+<script>
+
+    var histcatexplong = [
+		 {key: "townhouse", values:[[1287267726000, 665],
+				[  1318803726000, 830],
+				[ 1350426126000, 885],
+				[  1381962126000, 1209],
+				[  1413498126000, 1673]
+ ,[  1445034126000, 1532]
+ ,[  1476656526000, 1425]
+ ,[   1508192526000, 1687]]
+ 
+ 
+                
+    },
+	{
+                key: "condo", 
+				values :[[  1287267726000, 1345],
+ [  1318803726000, 1502]
+ ,[  1350426126000, 1059]
+ ,[  1381962126000, 1328]
+ ,[  1413498126000, 1509]
+ ,[  1445034126000, 1892]
+ ,[  1476656526000, 1992]
+ ,[   1508192526000, 1675]]},
+ 
+  {key: "house", values:[[1287267726000, 899],
+				[ 1318803726000, 1345],
+				[ 1350426126000, 1105],
+				[ 1381962126000, 1593],
+				[ 1413498126000, 2683]
+ ,[  1445034126000, 2965]
+ ,[  1476656526000, 3450]
+ ,[   1508192526000, 3798]]
+ 
+ 
+                
+    },
+	];
+
+    var colors = d3.scale.category20();
+    var chart;
+
+    nv.addGraph(function() {
+        chart = nv.models.stackedAreaWithFocusChart()
+            .useInteractiveGuideline(true)
+            .x(function(d) { return d[0] })
+            .y(function(d) { return d[1] })
+            .controlLabels({stacked: "Stacked"})
+            .duration(300);
+        chart.brushExtent([1225425600000, 1285819200000]);
+
+        chart.xAxis.tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
+        chart.x2Axis.tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
+        chart.yAxis.tickFormat(d3.format(',.4f'));
+        chart.y2Axis.tickFormat(d3.format(',.4f'));
+
+        chart.legend.vers('furious');
+
+        d3.select('#chart1')
+            .datum(histcatexplong)
+            .transition().duration(1000)
+            .call(chart)
+            .each('start', function() {
+                setTimeout(function() {
+                    d3.selectAll('#chart1 *').each(function() {
+                        if(this.__transition__)
+                            this.__transition__.duration = 1;
+                    })
+                }, 0)
+            });
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+
+
+</script>
+</body>
+</html>
